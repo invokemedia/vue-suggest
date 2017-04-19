@@ -7,6 +7,10 @@ An inline typeahead component for Vue.js
 - vue
 - vue-resource
 
+## Example
+
+![demo](https://raw.githubusercontent.com/invokemedia/vue-suggest/master/demo.gif)
+
 ## Usage
 
 ```

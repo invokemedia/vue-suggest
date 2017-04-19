@@ -13,7 +13,7 @@ An inline typeahead component for Vue.js
 
 ## Usage
 
-```
+```html
 <template>
   <div>
     <suggest
@@ -23,7 +23,9 @@ An inline typeahead component for Vue.js
       v-bind:format="formatCountries"/>
   </div>
 </template>
+```
 
+```js
 <script>
 export default {
   methods: {
@@ -35,7 +37,9 @@ export default {
   }
 }
 </script>
+```
 
+```css
 <style>
 suggest-wrapper {
   .suggest-results {

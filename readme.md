@@ -68,6 +68,6 @@ suggest-wrapper {
 
 **Up Arrow:** Show the previous suggestion.
 
-**Down Right:** Input the current suggestion.
+**Right Arrow:** Input the current suggestion.
 
 **Down Arrow:** Show the next suggestion.

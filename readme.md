@@ -45,11 +45,11 @@ suggest-wrapper {
 
 **name:** (required) The name of the html input.
 
-**url:** (required)
+**url:** (required) The url that will be called on keyup.
 
-**param:** (optional)
+**param:** (optional) The query parameter key used in the url on keyup.
 
-**format:** (optional)
+**format:** (optional) Callback for formatting suggestions.
 
 
 ### Events

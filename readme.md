@@ -58,7 +58,8 @@ suggest-wrapper {
 
 **Return:** Input the current suggestion.
 
-**Down Arrow:** Show the next suggestion.
-
 **Up Arrow:** Show the previous suggestion.
 
+**Down Right:** Input the current suggestion.
+
+**Down Arrow:** Show the next suggestion.

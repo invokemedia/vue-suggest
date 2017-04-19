@@ -1,7 +1,9 @@
 const KEY_TAB = 9
 const KEY_RETURN = 13
-const KEY_DOWN = 40
+const KEY_LEFT = 37
 const KEY_UP = 38
+const KEY_RIGHT = 39
+const KEY_DOWN = 40
 
 window.Vue.component('suggest', {
   template: `
@@ -94,7 +96,7 @@ window.Vue.component('suggest', {
       // e.which for Firefox support.
       const keyCode = (e.which || e.keyCode)
       // Listen for the tab key.
-      if (keyCode == KEY_TAB) {
+      if (keyCode == KEY_TAB || keyCode == KEY_RIGHT) {
         // Submit the current suggestion.
         if (this.suggestion) {
           this.content = this.suggestion
@@ -127,7 +129,7 @@ window.Vue.component('suggest', {
       // e.which for Firefox support.
       const keyCode = (e.which || e.keyCode)
       // Have the arrow keys been pressed?
-      if ([KEY_TAB, KEY_RETURN, KEY_DOWN, KEY_UP].indexOf(keyCode) > -1) {
+      if ([KEY_TAB, KEY_RETURN, KEY_UP, KEY_RIGHT, KEY_DOWN].indexOf(keyCode) > -1) {
         return
       } else if (e.target.value.length > 0) {
         clearTimeout(this.keyupTimeout)

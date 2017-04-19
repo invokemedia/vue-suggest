@@ -31,6 +31,11 @@ window.Vue.component('suggest', {
     </div>
   </div>`,
   props: {
+    placeholder: {
+      type: String,
+      required: false,
+      default: ''
+    },
     param: {
       type: String,
       required: false,
@@ -91,15 +96,17 @@ window.Vue.component('suggest', {
       // Listen for the tab key.
       if (keyCode == KEY_TAB) {
         // Submit the current suggestion.
-        if (this.suggestion.length > 0) {
+        if (this.suggestion) {
           this.content = this.suggestion
           this.suggestions = []
         }
       } 
       // Listen for the return key.
       else if (keyCode == KEY_RETURN) {
-        if (this.suggestion.length > 0) {
+        if (this.suggestion) {
           // Prevent submitting while a suggestion is visible.
+          this.content = this.suggestion
+          this.suggestions = []
           e.preventDefault()
         }
       }
@@ -120,7 +127,7 @@ window.Vue.component('suggest', {
       // e.which for Firefox support.
       const keyCode = (e.which || e.keyCode)
       // Have the arrow keys been pressed?
-      if ([KEY_DOWN, KEY_UP].indexOf(keyCode) > -1) {
+      if ([KEY_TAB, KEY_RETURN, KEY_DOWN, KEY_UP].indexOf(keyCode) > -1) {
         return
       } else if (e.target.value.length > 0) {
         clearTimeout(this.keyupTimeout)
@@ -146,4 +153,4 @@ window.Vue.component('suggest', {
       }, 300)
     }
   }
-});
+})

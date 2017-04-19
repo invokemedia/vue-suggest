@@ -80,6 +80,7 @@ window.Vue.component('suggest', {
         'suggest-results': {
           cursor: 'pointer',
           position: 'absolute',
+          opacity: '.4',
           top: 0,
           left: 0
         }

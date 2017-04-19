@@ -13,7 +13,7 @@ An inline typeahead component for Vue.js
 
 ## Motivation
 
-Vue Suggest attempts to provide provide a typeahead solution that is less intrusive on mobile devices as it does not use any dropdowns. Vue Suggest uses a native input field which means it will work with form events.
+Vue Suggest attempts to provide provide a typeahead solution that is less intrusive on mobile devices as it does not present any dropdowns. Vue Suggest uses a native input field which means it will work with form events.
 
 ## Usage
 

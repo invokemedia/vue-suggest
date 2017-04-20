@@ -20,7 +20,11 @@ An inline typeahead component for Vue.js
       name="country" 
       param="query" 
       url="/api/countries" 
-      v-bind:format="formatCountries"/>
+      v-bind:format="formatCountries"
+      v-bind:onSuggest="handleOnSuggest"/>
+    <input 
+      type="hidden" 
+      v-model="countryId"/>
   </div>
 </template>
 ```
@@ -28,11 +32,21 @@ An inline typeahead component for Vue.js
 ```js
 <script>
 export default {
+  data () {
+    return {
+      countryId: null
+    }
+  },
   methods: {
     formatCountries (data) {
       return data.map((country) => {
-        return country.name
+        return {
+          id: country.uuid,
+          name: country.iso
       })      
+    },
+    handleOnSuggest (country) {
+      this.countryId = country.id
     }
   }
 }
@@ -57,8 +71,9 @@ suggest-wrapper {
 
 **param:** (optional) The query parameter key used in the url on keyup.
 
-**format:** (optional) Callback for formatting suggestions.
+**onResponse:** (optional) Callback for formatting suggestions.
 
+**onSuggestion:** (optional) Callback that will be triggered when a suggestion is complete.
 
 ### Events
 

@@ -50,7 +50,7 @@ window.Vue.component('suggest', {
         return suggestion
       }
     },
-    format: {
+    onResponse: {
       type: Function,
       required: false,
       default: (data) => {
@@ -145,7 +145,7 @@ window.Vue.component('suggest', {
         clearTimeout(this.keyupTimeout)
         this.keyupTimeout = setTimeout(() => {
           this.$http.get(this.url, { params: { [this.param]: e.target.value }}).then((rep) => {
-            this.suggestions = this.format(rep.data)
+            this.suggestions = this.onResponse(rep.data)
             this.index = 0
           })
         }, 300)

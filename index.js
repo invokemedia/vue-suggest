@@ -26,10 +26,10 @@ window.Vue.component('suggest', {
     <div 
       class="suggest-results"
       :style="styles['suggest-results']"
-      @click="handleClick"
+      @click="selected"
       v-if="suggestion"
     >
-      {{ suggestion }}
+      {{ suggestion.name }}
     </div>
   </div>`,
   props: {
@@ -42,6 +42,13 @@ window.Vue.component('suggest', {
       type: String,
       required: false,
       default: 'q'
+    },
+    onSuggestion: {
+      type: Function,
+      required: false,
+      default: (suggestion) => {
+        return suggestion
+      }
     },
     format: {
       type: Function,
@@ -89,10 +96,15 @@ window.Vue.component('suggest', {
   },
   computed: {
     suggestion () {
-      return this.suggestions[this.index]
+      return this.suggestions[this.index] || null
     }
   },
   methods: {
+    selected () {
+      this.onSuggestion(this.suggestion)
+      this.content = this.suggestion.name
+      this.suggestions = []
+    },
     handleKeydown (e) {
       // e.which for Firefox support.
       const keyCode = (e.which || e.keyCode)
@@ -100,16 +112,13 @@ window.Vue.component('suggest', {
       if (keyCode == KEY_TAB || keyCode == KEY_RIGHT) {
         // Submit the current suggestion.
         if (this.suggestion) {
-          this.content = this.suggestion
-          this.suggestions = []
+          this.selected()
         }
       } 
       // Listen for the return key.
       else if (keyCode == KEY_RETURN) {
         if (this.suggestion) {
-          // Prevent submitting while a suggestion is visible.
-          this.content = this.suggestion
-          this.suggestions = []
+          this.selected()
           e.preventDefault()
         }
       }
@@ -144,15 +153,11 @@ window.Vue.component('suggest', {
         this.suggestions = []
       }
     },
-    handleClick (e) {
-      // Fill the input when a suggestion is clicked.
-      this.content = this.suggestion
-    },
     handleBlur (e) {
       clearTimeout(this.blurTimeout)
       // Debounce clearing the suggestion so a user can click on it.
       this.blurTimeout = setTimeout(() => {
-        //this.suggestions = []
+        this.suggestions = []
       }, 300)
     }
   }
